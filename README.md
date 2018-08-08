@@ -11,7 +11,7 @@ recognizing handwritten digits using **Support Vector Machine**
 
 ## examples:
 **pipeline: [training] ==> [testing] ==> [show metrics]**
-- ex 1 
+## ex 1 
 - [training] (train linearSVM on training.txt data set) ==>[models/linearSVM] 
 - [testing] (test models/linearSVM on testing.txt) ==>[inference/linearSVM.txt]  
 - [show metrics] (testing.txt, inference/linearSVM.txt) ==> [ inference/linearSVM.png]
@@ -22,7 +22,7 @@ recognizing handwritten digits using **Support Vector Machine**
 |testing|main_script.py --test models/linearSVM --test-file testing.txt --inference-file inference/linearSVM.txt|
 |metrics| metrics.py --test-file testing.txt --inference-file inference/linearSVM.txt|
 
-- ex 2
+## ex 2
 - [training] (train  linearSVM on training.txt data set using feature extraction) ==>[models/linearSVM,models/linearSVM.pca] 
 - [testing] (test models/linearSVM on testing.txt using feature extraction) ==>[inference/PCA-linearSVM.txt]  
 - [show metrics] (testing.txt, inference/PCA-linearSVM.txt) ==> [ inference/PCA-linearSVM.png]
@@ -33,7 +33,7 @@ recognizing handwritten digits using **Support Vector Machine**
 |testing|main_script.py --test models/PCA-linearSVM --test-file testing.txt --inference-file inference/PCA-linearSVM.txt --use-extractor|
 |metrics|metrics.py --test-file testing.txt --inference-file inference/PCA-linearSVM.txt|
 
-- ex 3 
+## ex 3 
 - [training] (train non-linearSVM on training.txt data set using feature extraction) ==>[models/PCA-kernelSVM] 
 - [testing] (test models/PCA-kernelSVM on testing.txt using feature extraction) ==>[inference/PCA-kernelSVM.txt]  
 - [show metrics] (testing.txt, inference/PCA-kernelSVM.txt) ==> [ inference/PCA-kernelSVM.png]
