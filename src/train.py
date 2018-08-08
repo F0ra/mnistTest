@@ -52,7 +52,7 @@ def train_svm(hdf5_path, save_file, model, batch_size=1000, use_extractor=False)
         joblib.dump(svm_model, save_file)
         if use_extractor:
             joblib.dump(pca, f'{save_file}.pca')
-            print(f"file saved @ {save_file}")
+            print(f"model saved @ {save_file}")
             print(f"feature extractor saved @ {save_file}.pca")
         else:
-            print(f"file saved @ {save_file}")
+            print(f"model saved @ {save_file}")
