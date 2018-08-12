@@ -44,6 +44,16 @@ recognizing handwritten digits using **Support Vector Machine**
 |testing|main_script.py --test models/PCA-kernelSVM --test-file testing.txt --inference-file inference/PCA-kernelSVM.txt --use-extractor|
 |metrics|metrics.py --test-file testing.txt --inference-file inference/PCA-kernelSVM.txt|
 
+## ex 4: testing convNet
+- [testing] (test convNet on testing.txt) ==>[inference/convNet_inference.txt]  
+- [show metrics] (testing.txt, inference/convNet_inference.txt) ==> [ inference/linearSVM.png, convNet_inference_incorr.png]
+
+| mode | command line |
+| ---- | ------ |
+| | |
+|testing|test-conv-net.py --test-file testing.txt --inference-file inference/convNet_inference.txt|
+|metrics| metrics.py --test-file testing.txt --inference-file inference/convNet_inference.txt --plot-incorr|
+
 ## dependencies:
 - cv2
 - h5py
