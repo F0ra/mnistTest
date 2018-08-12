@@ -56,8 +56,10 @@ script requires python 3.6+ to run.
 pip install opencv-python h5py numpy scipy scikit-learn matplotlib
 
 ## metrics example:
-![Confusion matrix example](https://raw.githubusercontent.com/F0ra/mnistTest/master/inference/PCA-kernelSVM.png)
+![Confusion matrix example](https://raw.githubusercontent.com/F0ra/mnistTest/master/inference/convNet_inference.png)
+
+## incorrect classification plot:
+![Incorrect classification](https://raw.githubusercontent.com/F0ra/mnistTest/master/inference/convNet_inference_incorr.png)
 
 ### Todos
-
- - add deep convNet 
+ - improve deep convNet 
