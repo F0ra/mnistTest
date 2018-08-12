@@ -24,4 +24,4 @@ def plot_incorrect(inCorrect:dict,path):
         ax.imshow(image,cmap='gray')
 
         i+=1
-    fig.savefig(path, facecolor='0.95')
+    fig.savefig(path)
