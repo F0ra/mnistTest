@@ -6,6 +6,8 @@ from src.utils import exists
 from src.utils import next_batch
 from sklearn.externals import joblib
 
+import os
+
 
 def test_svm(test_file, hdf5_path, saved_model, inference_file, batch_size=1000, use_extractor=False):
 
@@ -31,6 +33,49 @@ def test_svm(test_file, hdf5_path, saved_model, inference_file, batch_size=1000,
             current_progress += progress_step_in_percentage
 
         print(f' Testing SVM model [{100}%] ', end="\n")
+        save_prediction(test_file, inference_file, predicted_labels)
+
+
+def test_conv_net(test_file, hdf5_path, inference_file): 
+    from src.convNet import net
+    import tensorflow as tf
+    
+    batch_size=1
+
+    with h5py.File(hdf5_path, 'r') as f:
+        images = f['images'][:]
+        n_samples = images.shape[0]
+        images = (images/255).astype(np.float32)
+
+        progress_step_in_percentage = (1/n_samples*100)
+        current_progress = 0.
+        predicted_labels = []
+
+        conv_net = net
+        input_image = tf.placeholder(tf.float32, shape=[None, 784])
+        keep_prob = tf.placeholder(tf.float32)
+        prediction = conv_net(input_image=input_image, keep_prob=keep_prob)
+
+        saver = tf.train.Saver()
+        with tf.Session() as sess: 
+            # checkpoints restore -------------------
+            ckpt = tf.train.get_checkpoint_state('./convNet-ckpt/')
+
+            if ckpt and ckpt.model_checkpoint_path:
+                saver.restore(sess, ckpt.model_checkpoint_path)  # automatically updates the path to the latest checkpoint.
+                print('conv Net restore from checkpoints')
+            else:
+                print('conv Net save file does not found!')
+                return -1
+
+            inCorrect={}
+            for i in range(images.shape[0]):
+                if i%10 == 0: print(f' Testing conv Net model [{current_progress:{4}.{3}}%]\r', end="")
+                pred = prediction.eval(feed_dict={input_image: images[i:i+1], keep_prob:1.0})
+                predicted_labels.append(pred)
+                current_progress += progress_step_in_percentage
+
+        print(f' Testing conv Net model [{100}%] ', end="\n")
         save_prediction(test_file, inference_file, predicted_labels)
 
 
